@@ -32,7 +32,6 @@ const updateById = async (reg, res) => {
   res.json(result);
 };
 
-
 const removeContact = async (req, res) => {
   const { id } = req.params;
   const removedContact = await contacts.removeContact(id);
