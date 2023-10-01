@@ -32,15 +32,14 @@ const updateById = async (reg, res) => {
   res.json(result);
 };
 
-const removeContact = async (reg, res) => {
-  const { id } = reg.params;
-  const result = await contacts.removeContact(id);
-  if (result) {
-    throw HttpError(404, `Contact with ${id} not Found`);
+
+const removeContact = async (req, res) => {
+  const { id } = req.params;
+  const removedContact = await contacts.removeContact(id);
+  if (!removedContact) {
+    throw HttpError(404, `Contact with id ${id} not found`);
   }
-  res.json({
-    message: "contact deleted",
-  });
+  res.status(200).json({ message: "contact deleted" });
 };
 
 module.exports = {
