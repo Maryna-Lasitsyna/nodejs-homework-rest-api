@@ -1,4 +1,3 @@
-// const Joi = require("joi");
 const HttpError = require("../helpers/HttpError");
 
 const validateBody = (schema) => {

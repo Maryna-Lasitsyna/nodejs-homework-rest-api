@@ -1,4 +1,4 @@
-const { Contact } = require("../models/Contact");
+const { Contact } = require("../models/сontact");
 const { HttpError } = require("../helpers/index");
 
 const ctrlWrapper = require("../decorators/ctrlWrapper");
@@ -37,7 +37,7 @@ const updateStatusContact = async (reg, res) => {
 
   const result = await Contact.findByIdAndUpdate(id, reg.body);
   if (!result) {
-    throw HttpError(404, `Contact with ${id} not found`);
+    throw HttpError(404, "Not found");
   }
   res.json(result);
 };

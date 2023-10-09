@@ -1,5 +1,3 @@
-// const { request } = require("../app");
-
 const { isValidObjectId } = require("mongoose");
 const { HttpError } = require("../helpers");
 

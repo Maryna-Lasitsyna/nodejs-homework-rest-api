@@ -2,13 +2,11 @@ const Joi = require("joi");
 const { Schema, model } = require("mongoose");
 const { handleSaveError, runValidatorsAtUpdate } = require("./hooks");
 
-const nameRegExp = "^[A-Za-zА-Яа-я]+( [A-Za-zА-Яа-я]+)?$";
-
 const contactSchema = new Schema(
   {
     name: {
       type: String,
-      match: RegExp(nameRegExp),
+
       required: [true, "Set name for contact"],
     },
     email: {
@@ -34,7 +32,7 @@ contactSchema.pre("findOneAndUpdate", runValidatorsAtUpdate);
 contactSchema.post("findOneAndUpdate", handleSaveError);
 
 const addSchema = Joi.object({
-  name: Joi.string().pattern(RegExp(nameRegExp)).required().messages({
+  name: Joi.string().required().messages({
     "any.required": `missing required name field`,
   }),
   email: Joi.string().required().messages({
@@ -43,7 +41,7 @@ const addSchema = Joi.object({
   phone: Joi.string().required().messages({
     "any.required": `missing required phone field`,
   }),
-  favorite: Joi.boolean().required(),
+  favorite: Joi.boolean(),
 });
 
 const contactUpdateFavoriteSchema = Joi.object({
