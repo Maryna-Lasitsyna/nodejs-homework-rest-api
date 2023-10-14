@@ -7,11 +7,14 @@ const {
   isEmptyFavoriteBody,
   validateBody,
   isValidId,
+  authenticate,
 } = require("../../middlewares/index");
 
 const { schemas } = require("../../models/сontact");
 
 const router = express.Router();
+
+router.use(authenticate);
 
 router.get("/", ctrl.getAll);
 
