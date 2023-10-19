@@ -6,6 +6,7 @@ const {
   isEmptyBody,
   validateBody,
   authenticate,
+  upload,
 } = require("../../middlewares/index");
 
 const { schemas } = require("../../models/user");
@@ -29,5 +30,12 @@ authRouter.post(
 authRouter.get("/current", authenticate, authCtrl.getCurrent);
 
 authRouter.post("/logout", authenticate, authCtrl.logout);
+
+authRouter.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  authCtrl.updateAvatar
+);
 
 module.exports = authRouter;
