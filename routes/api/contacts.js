@@ -3,11 +3,11 @@ const express = require("express");
 const ctrl = require("../../controllers/contacts");
 
 const {
+  authenticate,
   isEmptyBody,
   isEmptyFavoriteBody,
   validateBody,
   isValidId,
-  authenticate,
 } = require("../../middlewares/index");
 
 const { schemas } = require("../../models/сontact");
